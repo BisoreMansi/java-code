@@ -1,0 +1,35 @@
+package com.example;
+
+import java.sql.DriverManager;
+
+import java.sql.*;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        // import package
+        // load and register
+        // create connection
+        // create statement
+        // execute statement
+        // process the results
+        // close
+
+        String url = "jdbc:mysql://localhost:3306/wipro";
+        String user = "root";
+        String pass = "12345678";
+        String query = " select cname from customer where acc_no = 101";
+        // Class.forName("org.mysql.Driver");
+        Connection con = DriverManager.getConnection(url, user, pass);
+        System.out.println("Connection Established");
+
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        // System.out.println(rs.next());
+        rs.next();
+        String name = rs.getString("cname");
+        System.out.println("Name of your data"+name);
+        con.close();
+        System.out.println("Connection closed");
+
+    }
+}
